@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简明指南 · 雷速</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f6f8;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1a2d30;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2.2rem 2rem 2.8rem;
+            box-shadow: 0 8px 28px rgba(20, 80, 80, 0.08);
+            border: 1px solid rgba(180, 215, 215, 0.4);
+        }
+
+        /* 网格卡片装饰 — 背景微格 */
+        .page {
+            background-image: 
+                linear-gradient(rgba(40, 130, 130, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(40, 130, 130, 0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0f3b3b;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+            border-left: 6px solid #2a9d8f;
+            padding-left: 1rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #3d6b6b;
+            margin: 0.2rem 0 1.8rem 0;
+            padding-left: 1rem;
+            border-left: 6px solid transparent;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .byline {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: #4d7a7a;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #b6d4d0;
+        }
+
+        .byline span {
+            background: #e1f0ed;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #1b5c5c;
+        }
+
+        .lead {
+            background: #e6f3f0;
+            border-radius: 24px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 2.4rem;
+            color: #1a4242;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 8px rgba(42, 157, 143, 0.08);
+            border: 1px solid rgba(42, 157, 143, 0.15);
+        }
+
+        .lead strong {
+            color: #116f64;
+            font-weight: 600;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0 2.2rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem 1.2rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(40, 100, 100, 0.05);
+            border: 1px solid #d5e7e5;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+        }
+
+        .card-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(30, 100, 100, 0.08);
+            border-color: #7fc1b8;
+        }
+
+        .card-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #124b47;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #2a9d8f;
+            border-radius: 3px;
+        }
+
+        .card-item p {
+            font-size: 0.9rem;
+            color: #2b5555;
+            margin: 0;
+        }
+
+        .quote-block {
+            background: #d9ece8;
+            border-radius: 20px;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 2rem;
+            border-left: 6px solid #21867a;
+            font-style: normal;
+            color: #143c3c;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .quote-block p {
+            margin-bottom: 0.4rem;
+        }
+
+        .quote-block .source {
+            font-size: 0.85rem;
+            color: #3f6b6b;
+            margin-top: 0.3rem;
+            display: block;
+            letter-spacing: 0.02em;
+        }
+
+        .text-body {
+            margin: 1.6rem 0 1.8rem;
+        }
+
+        .text-body p {
+            margin-bottom: 1.1rem;
+            color: #1e3e3e;
+        }
+
+        .highlight-link {
+            background: #ecf7f4;
+            display: inline-block;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            color: #0b6b5e;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+
+        .highlight-link:hover {
+            background: #c5e3dd;
+            text-decoration: underline;
+        }
+
+        .access-note {
+            background: #ffffffd9;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1rem;
+            border: 1px solid #b0d2cc;
+            box-shadow: 0 4px 12px rgba(30, 90, 90, 0.04);
+            font-size: 0.95rem;
+        }
+
+        .access-note strong {
+            color: #0b5f57;
+        }
+
+        .faq-mini {
+            margin-top: 2.2rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #c9ddd9;
+        }
+
+        .faq-mini details {
+            margin-bottom: 1rem;
+            border-radius: 16px;
+            background: #f3faf8;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            border: 1px solid #cde0dc;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #11554d;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini details p {
+            margin: 0.6rem 0 0.4rem;
+            color: #2b5151;
+            font-size: 0.9rem;
+            padding-left: 0.4rem;
+        }
+
+        .footer-visit {
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #3d6868;
+            text-align: center;
+            border-top: 1px solid #cfe2de;
+            padding-top: 1.8rem;
+        }
+
+        .footer-visit a {
+            color: #0f6158;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #6aa89f;
+        }
+
+        .footer-visit a:hover {
+            border-bottom: 2px solid #21867a;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page {
+                padding: 1.6rem 1.2rem 2rem;
+                border-radius: 24px;
+            }
+            h1 {
+                font-size: 1.7rem;
+                padding-left: 0.8rem;
+            }
+            .subhead {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .lead {
+                padding: 1rem 1.2rem;
+                font-size: 0.98rem;
+            }
+            .quote-block {
+                padding: 1rem 1.2rem;
+            }
+            .access-note {
+                padding: 1rem 1.2rem;
+            }
+            .faq-mini details {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (min-width: 700px) {
+            .lead {
+                font-size: 1.1rem;
+                padding: 1.6rem 2.2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>从简明指南到顺畅访问</h1>
+        <div class="subhead">关于雷速，一些值得留意的思路</div>
+
+        <div class="byline">
+            <span>指南笔记</span>
+            <span>· 知识向</span>
+            <span>· 2025</span>
+        </div>
+
+        <div class="lead">
+            <strong>雷速</strong> 所代表的，不只是一种工具或平台，而是一套偏向轻量、直接的访问逻辑。如果你正在寻找一种更简单的方式来理解它，这篇短文或许可以帮你把碎片拼起来。
+        </div>
+
+        <div class="text-body">
+            <p>很多人第一次接触 <a href="https://page--leisu.com" class="highlight-link">雷速</a> 时，会被它的名称和界面风格吸引。但真正重要的是：它如何帮你减少中间步骤，让信息流动更短。这听起来像一句空话，实际却体现在每一处交互的取舍上。</p>
+            <p>这次我们不谈复杂的技术架构，只聚焦于一种“向导思维”——把访问路径当作一条走廊，走廊越直、灯光越清晰，你到达目标就越不费力。而雷速的设计逻辑，恰好吻合了这种理念。</p>
+        </div>
+
+        <!-- 网格卡片：要点摘要 -->
+        <div class="card-grid">
+            <div class="card-item">
+                <h3>路径直觉</h3>
+                <p>减少点击层级，每个页面都尽量承载完整信息，避免频繁跳转。</p>
+            </div>
+            <div class="card-item">
+                <h3>内容前置</h3>
+                <p>核心功能或提示放在首屏，不需要四处寻找入口。</p>
+            </div>
+            <div class="card-item">
+                <h3>反馈清晰</h3>
+                <p>任何操作都有明确的视觉回应，不会让你悬在“是否成功”的疑问里。</p>
+            </div>
+            <div class="card-item">
+                <h3>延续性</h3>
+                <p>页面状态保持稳定，刷新或返回不会丢失上下文。</p>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>“访问本身的体验，往往比内容更先抵达用户。一个好的向导不会让你注意路标，但你会记住到达时的从容。”</p>
+            <span class="source">—— 摘自一篇关于界面简明的笔记</span>
+        </div>
+
+        <div class="text-body">
+            <p>基于这种理解，我们整理了几条访问提示。它们不算什么新发现，但对于常用电脑或手机获取信息的人来说，这些细节可能会让日常操作更顺滑。特别当你面对多个标签页或需要快速切换时，一个清爽的起点会让精力更集中。</p>
+        </div>
+
+        <!-- 访问提示块 -->
+        <div class="access-note">
+            <strong>🟢 访问提醒</strong>
+            <p style="margin-top: 0.5rem; margin-bottom: 0.2rem;">如果你打算将 <a href="https://page--leisu.com" style="color: #0b6b5e; font-weight: 500; text-decoration: underline; text-underline-offset: 3px;">雷速</a> 作为一个经常参考的站点，不妨试试以下方式：</p>
+            <ul style="margin: 0.6rem 0 0 1.2rem; padding-left: 0.2rem; color: #1d4949; list-style-type: '· ';">
+                <li>把链接固定在书签栏或阅读列表，便于重复访问。</li>
+                <li>首次浏览时，先花一分钟熟悉页面布局，留意常见的导航位置。</li>
+                <li>遇到需要输入或选择的地方，注意页面给出的占位提示，它们往往直接指明了预期内容。</li>
+            </ul>
+        </div>
+
+        <!-- FAQ 摘要，偏实用 -->
+        <div class="faq-mini">
+            <details>
+                <summary>为什么有时页面加载偏慢？</summary>
+                <p>通常与网络环境或缓存有关。可以尝试刷新或稍后重试，多数情况会很快恢复。另外，使用现代浏览器也能获得更好兼容性。</p>
+            </details>
+            <details>
+                <summary>移动端和桌面端体验有区别吗？</summary>
+                <p>核心功能保持一致，但移动端布局会适配屏幕宽度，按钮和间距略微放大，方便触控。推荐在两种模式下都试一次，找到自己顺手的节奏。</p>
+            </details>
+            <details>
+                <summary>有没有快速上手的建议？</summary>
+                <p>从你最关心的一个功能或一篇内容开始，不要求一次看完。逐步探索会比一口气阅读更有效，也更容易记住结构。</p>
+            </details>
+        </div>
+
+        <!-- 访问句 / 结语 -->
+        <div class="footer-visit">
+            <p>如果你还没看过 <a href="https://page--leisu.com">雷速</a>，或许现在就是一个不错的起点。保持好奇，也保持简单。</p>
+        </div>
+    </div>
+</body>
+</html>
